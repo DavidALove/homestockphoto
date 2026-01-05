@@ -1,26 +1,127 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.5rem;
+  
+  /* Neon Blue & Orange Theme - Light Mode */
+  --background: 247 250 252; /* #F7FAFC */
+  --foreground: 26 32 44; /* #1A202C */
+  --card: 255 255 255;
+  --card-foreground: 26 32 44;
+  --popover: 255 255 255;
+  --popover-foreground: 26 32 44;
+  --primary: 0 209 255; /* #00D1FF - Neon Blue */
+  --primary-foreground: 255 255 255;
+  --secondary: 247 250 252;
+  --secondary-foreground: 26 32 44;
+  --muted: 247 250 252;
+  --muted-foreground: 160 174 192; /* #A0AEC0 */
+  --accent: 255 127 0; /* #FF7F00 - Neon Orange */
+  --accent-foreground: 255 255 255;
+  --destructive: 239 68 68;
+  --border: 226 232 240;
+  --input: 226 232 240;
+  --ring: 0 209 255; /* Neon Blue */
+  --chart-1: 0 209 255;
+  --chart-2: 255 127 0;
+  --chart-3: 139 92 246;
+  --chart-4: 236 72 153;
+  --chart-5: 251 146 60;
+  --sidebar: 255 255 255;
+  --sidebar-foreground: 26 32 44;
+  --sidebar-primary: 0 209 255;
+  --sidebar-primary-foreground: 255 255 255;
+  --sidebar-accent: 247 250 252;
+  --sidebar-accent-foreground: 26 32 44;
+  --sidebar-border: 226 232 240;
+  --sidebar-ring: 0 209 255;
+}
+
+.dark {
+  /* Neon Blue & Orange Theme - Dark Mode (Default) */
+  --background: 26 32 44; /* #1A202C */
+  --foreground: 255 255 255; /* #FFFFFF */
+  --card: 45 55 72; /* Slightly lighter dark for cards */
+  --card-foreground: 255 255 255;
+  --popover: 45 55 72;
+  --popover-foreground: 255 255 255;
+  --primary: 0 209 255; /* #00D1FF - Neon Blue */
+  --primary-foreground: 26 32 44;
+  --secondary: 45 55 72;
+  --secondary-foreground: 255 255 255;
+  --muted: 45 55 72;
+  --muted-foreground: 160 174 192; /* #A0AEC0 */
+  --accent: 255 127 0; /* #FF7F00 - Neon Orange */
+  --accent-foreground: 255 255 255;
+  --destructive: 239 68 68;
+  --border: 255 255 255 / 0.1;
+  --input: 255 255 255 / 0.15;
+  --ring: 0 209 255; /* Neon Blue */
+  --chart-1: 0 209 255;
+  --chart-2: 255 127 0;
+  --chart-3: 139 92 246;
+  --chart-4: 236 72 153;
+  --chart-5: 251 146 60;
+  --sidebar: 26 32 44;
+  --sidebar-foreground: 255 255 255;
+  --sidebar-primary: 0 209 255;
+  --sidebar-primary-foreground: 26 32 44;
+  --sidebar-accent: 45 55 72;
+  --sidebar-accent-foreground: 255 255 255;
+  --sidebar-border: 255 255 255 / 0.1;
+  --sidebar-ring: 0 209 255;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
